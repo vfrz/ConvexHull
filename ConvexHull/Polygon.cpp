@@ -27,3 +27,16 @@ void Polygon::removeVertex(Vertex* vertex)
 	vertex->nextVertex->previousVertex = vertex->previousVertex;
 	delete vertex;
 }
+
+std::vector<Vertex*> Polygon::getVertices() const
+{
+	std::vector<Vertex*> vertices;
+
+	auto currentVertex = primaryVertex;
+	do {
+		vertices.emplace_back(currentVertex);
+		currentVertex = currentVertex->nextVertex;
+	} while(currentVertex != primaryVertex);
+
+	return vertices;
+}
